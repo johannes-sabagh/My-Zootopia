@@ -12,12 +12,13 @@ for animal in animals_data:
     diet = animal["characteristics"]["diet"]
     locations = animal["locations"][0]
     animal_type = animal["characteristics"].get("type")
-    output += f"Name: {name}\n"
-    output += f"Diet: {diet}\n"
-    output += f"Location: {locations}\n"
+    output += '<li class="cards__item">'
+    output += f"Name: {name}<br/>\n"
+    output += f"Diet: {diet}<br/>\n"
+    output += f"Location: {locations}<br/>\n"
     if animal_type:
-        output += f"Type: {animal_type}\n"
-    output += "\n"
+        output += f"Type: {animal_type}<br/>\n"
+    output += '</li>'
 
 
 def load_html(html_path):
