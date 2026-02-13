@@ -22,10 +22,13 @@ def serialize_animal(animal):
     locations = animal["locations"][0]
     animal_type = animal["characteristics"].get("type")
     output += '<li class="cards__item">'
-    output += f'<div class="card__title">{name}</div>\n'
+    if name:
+        output += f'<div class="card__title">{name}</div>\n'
     output += '<p class="card__text">'
-    output += f'<strong>Diet: </strong>{diet}<br/>\n'
-    output += f'<strong>Location: </strong>{locations}<br/>\n'
+    if diet:
+        output += f'<strong>Diet: </strong>{diet}<br/>\n'
+    if locations:
+        output += f'<strong>Location: </strong>{locations}<br/>\n'
     if animal_type:
         output += f'<strong>Type: </strong>{animal_type}<br/>\n'
     output += '</p>'
@@ -39,9 +42,9 @@ def load_html(html_path):
         return html_file.read()
 
 
-def write_html(html_output, html_text):
+def write_html(html_output, html_text, text_to_replace):
     """create new html from the template and the output from JSON"""
-    new_html_text = html_text.replace("__REPLACE_ANIMALS_INFO__", html_output)
+    new_html_text = html_text.replace(text_to_replace, html_output)
     with open("animals.html", "w") as new_html:
         new_html.write(new_html_text)
 
@@ -49,9 +52,9 @@ def write_html(html_output, html_text):
 def main():
     animals_data = load_data("animals_data.json")
     html_output = create_html_from_json(animals_data)
-    create_html_from_json(animals_data)
     html_text = load_html("animals_template.html")
-    write_html(html_output, html_text)
+    text_to_replace = "__REPLACE_ANIMALS_INFO__"
+    write_html(html_output, html_text, text_to_replace)
 
 if __name__ == "__main__":
     main()
