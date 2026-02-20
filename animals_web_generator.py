@@ -47,6 +47,8 @@ def main():
     animal_name = input("Please enter an animal: ")
     print("Website was successfully generated to the file animals.html.")
     animals_data = data_fetcher.fetch_data(animal_name)
+
+    # if no animal is found a message will be shown on the website "The animal xxxx doesn't exist."
     if not animals_data:
         html_output = f"<h2 style='text-align: center'>The animal <div style='color: red'>{animal_name}</div> doesn't exist.</h2>"
         html_text = load_html("animals_template.html")
