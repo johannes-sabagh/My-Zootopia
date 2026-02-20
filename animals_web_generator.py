@@ -1,11 +1,5 @@
 import data_fetcher
 
-# def load_data(file_path):
-#   """ Loads a JSON file """
-#   with open(file_path, "r") as handle:
-#     return json.load(handle)
-
-
 def create_html_from_json(animals_data):
     """ creates a HTML structure with the data from JSON"""
     output = ''
