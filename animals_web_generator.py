@@ -1,9 +1,9 @@
-import json
+import data_fetcher
 
-def load_data(file_path):
-  """ Loads a JSON file """
-  with open(file_path, "r") as handle:
-    return json.load(handle)
+# def load_data(file_path):
+#   """ Loads a JSON file """
+#   with open(file_path, "r") as handle:
+#     return json.load(handle)
 
 
 def create_html_from_json(animals_data):
@@ -50,11 +50,19 @@ def write_html(html_output, html_text, text_to_replace):
 
 
 def main():
-    animals_data = load_data("animals_data.json")
-    html_output = create_html_from_json(animals_data)
-    html_text = load_html("animals_template.html")
-    text_to_replace = "__REPLACE_ANIMALS_INFO__"
-    write_html(html_output, html_text, text_to_replace)
+    animal_name = input("Please enter an animal: ")
+    print("Website was successfully generated to the file animals.html.")
+    animals_data = data_fetcher.fetch_data(animal_name)
+    if not animals_data:
+        html_output = f"<h2 style='text-align: center'>The animal <div style='color: red'>{animal_name}</div> doesn't exist.</h2>"
+        html_text = load_html("animals_template.html")
+        text_to_replace = "__REPLACE_ANIMALS_INFO__"
+        write_html(html_output, html_text, text_to_replace)
+    else:
+        html_output = create_html_from_json(animals_data)
+        html_text = load_html("animals_template.html")
+        text_to_replace = "__REPLACE_ANIMALS_INFO__"
+        write_html(html_output, html_text, text_to_replace)
 
 if __name__ == "__main__":
     main()
