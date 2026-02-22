@@ -15,8 +15,8 @@ Enter an animal name, get a nice HTML page with facts about it. That's pretty mu
    
 4. Run it:
    
-   python animals_web_generator.py (Windows)
-   python3 animals_web_generator.py (Mac an Linux)
+   -python animals_web_generator.py (Windows)
+   -python3 animals_web_generator.py (Mac an Linux)
    
 5. Enter an animal to look for
 
